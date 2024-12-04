@@ -1,0 +1,25 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<div class="col-md-4 offset-md-4 mt-0">
+    <h1 class="text-center display-1">Login</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <!-- {{form.as_p}} -->
+
+        <div class="mb-3">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" placeholder="Write your user name" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password" class="form-control">
+        </div>
+
+        <button class="btn btn-primary">Signin</button>
+    </form>
+</div>
+
+{% endblock %}
