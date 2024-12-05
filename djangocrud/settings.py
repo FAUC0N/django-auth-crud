@@ -29,14 +29,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # DEBUG = True
 DEBUG = 'RENDER' not in os.environ
 
-# ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.100.13']
-
 # https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+else:
+    ALLOWED_HOSTS.extend(['localhost', '127.0.0.1', '192.168.100.13'])
 
 # Application definition
 
@@ -94,12 +94,27 @@ WSGI_APPLICATION = 'djangocrud.wsgi.application'
 
 # Database documentation https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://postgres:postgres@localhost',
-        conn_max_age=600
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default='postgresql://postgres:postgres@localhost',
+#         conn_max_age=600
+#     )
+# }
+
+if 'RENDER' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default='postgresql://postgres:postgres@localhost',
+            conn_max_age=600
+        )
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
