@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-fm*!+ur2$stnw5v846cp(dyq7%&g!y(o92opp*h4@i9i8_bs7&'
-SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
+SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-fm*!+ur2$stnw5v846cp(dyq7%&g!y(o92opp*h4@i9i8_bs7&')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -85,36 +85,35 @@ WSGI_APPLICATION = 'djangocrud.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+# Selección de base de datos: SQLite (True) o PostgreSQL (False)
+USE_LOCAL_SQLITE = True  # Cambia a False para usar PostgreSQL localmente
 
-# Database documentation https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default='postgresql://postgres:postgres@localhost',
-#         conn_max_age=600
-#     )
-# }
-
-if 'RENDER' in os.environ:
+if 'RENDER' in os.environ:  # Configuración para Render o producción
     DATABASES = {
         'default': dj_database_url.config(
-            default='postgresql://postgres:postgres@localhost',
-            conn_max_age=600
+            default=os.environ.get('DATABASE_URL'),
+            conn_max_age=600,  # Mantén conexiones persistentes
         )
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+else:  # Configuración local
+    if USE_LOCAL_SQLITE:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
         }
-    }
+    else:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': 'gjango_data',  # Cambia al nombre de tu base de datos
+                'USER': 'jorge',  # Usuario de PostgreSQL
+                'PASSWORD': '56364',  # Contraseña de PostgreSQL
+                'HOST': 'localhost',  # Dirección de la base de datos
+                'PORT': '5432',  # Puerto de PostgreSQL
+            }
+        }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
