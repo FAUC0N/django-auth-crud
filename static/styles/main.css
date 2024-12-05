@@ -1,0 +1,95 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Header Styles */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Styles */
+/* footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+} */
+
+footer {
+    background-color: #343a40; /* Mantén el fondo oscuro */
+    color: white; /* Texto blanco */
+    text-align: center;
+    padding: 10px 0; /* Ajusta el espacio superior e inferior */
+}
+
+footer p {
+    margin: 0; /* Elimina márgenes extra */
+    padding: 0;
+}
+
+footer p:first-child {
+    font-size: 1.2rem; /* Haz el texto de copyright más grande */
+    font-weight: bold; /* Hazlo negrita */
+}
+
+footer p:last-child {
+    font-size: 0.8rem; /* Reduce el tamaño del texto secundario */
+    margin-top: 5px; /* Agrega un pequeño margen superior */
+    color: #dcdcdc; /* Usa un color ligeramente más claro para diferenciación */
+}
+
+
+/* Main Content Styles */
+main {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    max-width: 900px;
+}
+
+/* Button Styles */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Link Styles */
+a {
+    color: #007bff;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}

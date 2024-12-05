@@ -3,7 +3,6 @@
 set -o errexit  
 
 # Instala las dependencias de Python
-pip install --upgrade pip
 pip install -r requirements.txt
 
 # Realiza migraciones de base de datos y colecta archivos estáticos
